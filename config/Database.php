@@ -1,9 +1,9 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "gestion";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "tailorsd_gestion";
+    private $username = "tailorsd_gestion";
+    private $password = "WmV1K4tOGwRg";
     public $conn;
 
     public function getConnection() {

@@ -15,7 +15,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ftp.tailorsdev.com
+          server: tailorsdev.com
           username: gestion@tailorsdev.com
           password: WmV1K4tOGwRg
           protocol: ftps

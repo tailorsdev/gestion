@@ -13,6 +13,7 @@ createApp({
             nombre: '',
             descripcion: ''
         })
+        
         const isEditing = ref(false)
         const showFormModal = ref(false)
         const showDeleteModal = ref(false)

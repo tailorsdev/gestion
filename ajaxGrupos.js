@@ -19,9 +19,10 @@ createApp({
         const searchTerm = ref('')
         const errors = ref({})
         const nextId = ref(1)
+        const url = 'index.php?controller=Grupo&action='
 
         const loadData = async () => {
-            const data = await fetch('index.php?controller=Grupo&action=readAll')
+            const data = await fetch(url + 'readAll')
             grupos.value = await data.json()
             nextId.value = 5
         }
@@ -96,7 +97,7 @@ createApp({
                 for (const key in currentGroup.value) {
                     formData.append(key, currentGroup.value[key])
                 }
-                const data = await fetch('index.php?controller=Grupo&action=update', {
+                const data = await fetch(url + 'update', {
                     method: 'POST',
                     body: formData
                 })
@@ -107,7 +108,7 @@ createApp({
                 for (const key in currentGroup.value) {
                     formData.append(key, currentGroup.value[key])
                 }
-                const data = await fetch('index.php?controller=Grupo&action=create', {
+                const data = await fetch(url + 'create', {
                     method: 'POST',
                     body: formData
                 })
@@ -120,7 +121,7 @@ createApp({
         const deleteGroup = async () => {
             const formData = new FormData()
             formData.append('id', currentGroup.value.id)
-            const data = await fetch('index.php?controller=Grupo&action=delete', {
+            const data = await fetch(url + 'delete', {
                 method: 'POST',
                 body: formData
             })

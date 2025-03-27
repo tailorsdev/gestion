@@ -18,9 +18,10 @@ createApp({
         const searchTerm = ref('')
         const errors = ref({})
         const nextId = ref(1)
+        const url = 'index.php?controller=Producto&action='
 
         const loadData = async () => {
-            const data = await fetch('index.php?controller=Producto&action=readAll')
+            const data = await fetch(url + 'readAll')
             productos.value = await data.json()
             nextId.value = 4
         }
@@ -104,31 +105,17 @@ createApp({
         const saveProduct = async () => {
             if (!validateForm()) return
 
+            const action = isEditing.value ? 'update' : 'create';
             const formData = new FormData();
-            if (isEditing.value) {
-                for (const key in currentProduct.value) {
-                    formData.append(key, currentProduct.value[key]);
-                }
-                const data = await fetch('index.php?controller=Producto&action=update', {
-                    method: 'POST',
-                    body: formData
-                })
-
-            } else {
-                for (const key in currentProduct.value) {
-                    formData.append(key, currentProduct.value[key]);
-                }
-                const data = await fetch('index.php?controller=Producto&action=create', {
-                    method: 'POST',
-                    body: formData
-                })
-                console.log(data)
-                const newProduct = {
-                    ...currentProduct.value,
-                    id: nextId.value++,
-                    fecha_creacion: new Date()
-                }
+            
+            for (const key in currentProduct.value) {
+                formData.append(key, currentProduct.value[key]);
             }
+            const data = await fetch(url + action, {
+                method: 'POST',
+                body: formData
+            })
+            console.log(await data.json())
             await loadData()
             closeModal()
         }
@@ -136,10 +123,11 @@ createApp({
         const deleteProduct = async () => {
             const formData = new FormData();
             formData.append('id', currentProduct.value.id);
-            const data = await fetch('index.php?controller=Producto&action=delete', {
+            const data = await fetch(url + 'delete', {
                 method: 'POST',
                 body: formData
             })
+            console.log(await data.json())
             await loadData()
             closeModal()
         }

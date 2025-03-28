@@ -37,13 +37,22 @@ createApp({
             productosAsignados.value = await data.json()
         };
 
-        const asignarProducto = (productoId) => {
+        const asignarProducto = async (productoId) => {
             if (estaProductoAsignado(productoId)) return;
 
-            productosGrupos.value.push({
-                grupoId: grupoSeleccionado.value,
-                productoId: productoId
-            });
+            const url = 'index.php?controller=Asignacion&action=asignar'
+            const data = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    grupo_id: grupoSeleccionado.value,
+                    producto_id: productoId
+                })
+            })
+
+            console.log(await data.json())
 
             cargarProductosGrupo();
         };

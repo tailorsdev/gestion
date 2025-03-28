@@ -13,7 +13,7 @@
     <div id="app" class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-md rounded-lg p-6">
             <div class="mb-2">
-                <a href="#" class="text-sm text-gray-600">Inicio</a>
+                <a href="index.php" class="text-sm text-gray-600">Inicio</a>
             </div>
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold">Asignación de Productos a Grupos</h1>

@@ -40,16 +40,13 @@ createApp({
         const asignarProducto = async (productoId) => {
             if (estaProductoAsignado(productoId)) return;
 
+            const formData = new FormData()
+            formData.append('grupo_id', grupoSeleccionado.value)
+            formData.append('producto_id', productoId)
             const url = 'index.php?controller=Asignacion&action=asignar'
             const data = await fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    grupo_id: grupoSeleccionado.value,
-                    producto_id: productoId
-                })
+                body: formData
             })
 
             console.log(await data.json())

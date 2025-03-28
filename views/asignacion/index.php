@@ -178,7 +178,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-center mb-2">Confirmar Eliminación</h3>
                 <p class="text-gray-600 text-center mb-6">
-                    ¿Estás seguro de que deseas remover el producto del grupo <span class="font-semibold">{{ 'currentGroup.nombre' }}</span>?
+                    ¿Estás seguro de que deseas remover el producto del grupo <span class="font-semibold">{{ currentProduct.nombre }}</span>?
                     Esta acción no se puede deshacer.
                 </p>
                 <div class="flex justify-center space-x-3">

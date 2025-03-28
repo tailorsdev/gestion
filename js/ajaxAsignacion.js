@@ -16,7 +16,7 @@ createApp({
         const showModalAsignar = ref(false);
         const busquedaProducto = ref('');
         const showDeleteModal = ref(false)
-
+        const currentProduct = ref()
 
         const loadDataGrupos = async () => {
             const url = 'index.php?controller=Grupo&action='
@@ -31,9 +31,7 @@ createApp({
         }
 
         const openDeleteModal = (producto) => {
-            currentGroup.value = {
-                ...grupo
-            }
+            currentProduct.value = { ...producto }
             showDeleteModal.value = true
         }
 
@@ -112,6 +110,7 @@ createApp({
             productos,
             productosGrupos,
             grupoSeleccionado,
+            currentProduct,
             showDeleteModal,
             productosAsignados,
             showModalAsignar,

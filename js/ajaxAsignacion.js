@@ -67,7 +67,7 @@ createApp({
 
         const estaProductoAsignado = (productoId) => {
             return productosAsignados.value.some(
-                pg => pg.grupo_id === grupoSeleccionado.value && pg.producto_id === productoId
+                pg => pg.grupo_id === grupoSeleccionado.value && pg.id === productoId
             );
         };
 

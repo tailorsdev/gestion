@@ -101,7 +101,7 @@ class Grupo {
     }
 
     public function obtenerProductosAsignados() {
-        $query = "SELECT p.*
+        $query = "SELECT p.*, pg.grupo_id
                   FROM productos p
                   INNER JOIN producto_grupo pg ON p.id = pg.producto_id
                   WHERE pg.grupo_id = :grupo_id";

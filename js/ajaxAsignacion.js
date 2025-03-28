@@ -17,7 +17,7 @@ createApp({
         const busquedaProducto = ref('');
 
 
-        const loadDatasGrupos = async () => {
+        const loadDataGrupos = async () => {
             const url = 'index.php?controller=Grupo&action='
             const data = await fetch(url + 'readAll')
             grupos.value = await data.json()
@@ -93,7 +93,8 @@ createApp({
         });
 
         onMounted(async () => {
-            await loadDatasGrupos();
+            await loadDataGrupos();
+            await loadDataProductos();
             if (grupos.value.length > 0) {
                 grupoSeleccionado.value = grupos.value[0].id;
                 await cargarProductosGrupo();

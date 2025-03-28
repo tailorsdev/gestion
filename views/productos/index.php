@@ -148,8 +148,8 @@
                                 <select
                                     v-model="currentProduct.estado"
                                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <option :value="true">Activo</option>
-                                    <option :value="false">Inactivo</option>
+                                    <option :value="1">Activo</option>
+                                    <option :value="0">Inactivo</option>
                                 </select>
                             </div>
                             <div class="md:col-span-2">

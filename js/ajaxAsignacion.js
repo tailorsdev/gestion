@@ -68,8 +68,8 @@ createApp({
                 method: 'POST',
                 body: formData
             })
-
             console.log(await data.json())
+            showDeleteModal.value = false
             cargarProductosGrupo();
         };
 

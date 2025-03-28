@@ -33,7 +33,7 @@ createApp({
             if (!grupoSeleccionado.value) return;
 
             const url = 'index.php?controller=Asignacion&action=obtenerProductosAsignados&'
-            const data = await fetch(url + 'grupoId=' + grupoSeleccionado.value)
+            const data = await fetch(url + 'grupo_id=' + grupoSeleccionado.value)
             productosAsignados.value = await data.json()
         };
 

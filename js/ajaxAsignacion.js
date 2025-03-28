@@ -21,8 +21,15 @@ createApp({
         const productosAsignados = ref([]);
         const mostrarModalAsignar = ref(false);
         const busquedaProducto = ref('');
+        const url = 'index.php?controller=Grupo&action='
 
         // Métodos
+
+        const loadDatasGrupos = async () => {
+            const data = await fetch(url + 'readAll')
+            grupos.value = await data.json()
+        }
+
         const cargarProductosGrupo = () => {
             if (!grupoSeleccionado.value) return;
 
@@ -89,7 +96,8 @@ createApp({
         });
 
         // Inicialización
-        onMounted(() => {
+        onMounted(async () => {
+            await loadDatasGrupos();
             // Si hay grupos disponibles, seleccionar el primero por defecto
             if (grupos.value.length > 0) {
                 grupoSeleccionado.value = grupos.value[0].id;

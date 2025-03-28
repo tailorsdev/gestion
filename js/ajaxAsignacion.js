@@ -22,7 +22,6 @@ createApp({
         const mostrarModalAsignar = ref(false);
         const busquedaProducto = ref('');
 
-        // Métodos
 
         const loadDatasGrupos = async () => {
             const url = 'index.php?controller=Grupo&action='
@@ -39,40 +38,32 @@ createApp({
         const cargarProductosGrupo = () => {
             if (!grupoSeleccionado.value) return;
 
-            // Obtener IDs de productos asignados al grupo seleccionado
             const idsProductosAsignados = productosGrupos.value
                 .filter(pg => pg.grupoId === grupoSeleccionado.value)
                 .map(pg => pg.productoId);
 
-            // Obtener los productos completos
             productosAsignados.value = productos.value.filter(p => idsProductosAsignados.includes(p.id));
         };
 
         const asignarProducto = (productoId) => {
-            // Verificar si ya está asignado
             if (estaProductoAsignado(productoId)) return;
 
-            // Agregar la relación
             productosGrupos.value.push({
                 grupoId: grupoSeleccionado.value,
                 productoId: productoId
             });
 
-            // Actualizar la lista de productos asignados
             cargarProductosGrupo();
         };
 
         const removerProducto = (productoId) => {
-            // Encontrar el índice de la relación a eliminar
             const indice = productosGrupos.value.findIndex(
                 pg => pg.grupoId === grupoSeleccionado.value && pg.productoId === productoId
             );
 
             if (indice !== -1) {
-                // Eliminar la relación
                 productosGrupos.value.splice(indice, 1);
 
-                // Actualizar la lista de productos asignados
                 cargarProductosGrupo();
             }
         };
@@ -87,7 +78,6 @@ createApp({
             return precio.toLocaleString('es-CO');
         };
 
-        // Productos filtrados para el modal
         const productosFiltrados = computed(() => {
             if (!busquedaProducto.value) {
                 return productos.value;
@@ -101,11 +91,9 @@ createApp({
             );
         });
 
-        // Inicialización
         onMounted(async () => {
             await loadDatasGrupos();
             await loadDataProductos();
-            // Si hay grupos disponibles, seleccionar el primero por defecto
             if (grupos.value.length > 0) {
                 grupoSeleccionado.value = grupos.value[0].id;
                 cargarProductosGrupo();

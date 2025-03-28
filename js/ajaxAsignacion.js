@@ -40,7 +40,7 @@ createApp({
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ grupoId: grupoSeleccionado.value })
+                body: JSON.stringify({ grupo_id: grupoSeleccionado.value })
             })
             productosAsignados.value = await data.json()
             //productos.value.filter(p => idsProductosAsignados.includes(p.id));
@@ -96,7 +96,7 @@ createApp({
             await loadDatasGrupos();
             if (grupos.value.length > 0) {
                 grupoSeleccionado.value = grupos.value[0].id;
-                cargarProductosGrupo();
+                await cargarProductosGrupo();
             }
         });
 

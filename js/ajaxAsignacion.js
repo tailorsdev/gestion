@@ -13,7 +13,7 @@ createApp({
         const productosGrupos = ref([]);
         const grupoSeleccionado = ref('');
         const productosAsignados = ref([]);
-        const mostrarModalAsignar = ref(false);
+        const showModalAsignar = ref(false);
         const busquedaProducto = ref('');
         const showDeleteModal = ref(false)
 
@@ -28,6 +28,13 @@ createApp({
             const url = 'index.php?controller=Producto&action='
             const data = await fetch(url + 'readAll')
             productos.value = await data.json()
+        }
+
+        const openDeleteModal = (producto) => {
+            currentGroup.value = {
+                ...grupo
+            }
+            showDeleteModal.value = true
         }
 
         const cargarProductosGrupo = async () => {
@@ -107,8 +114,9 @@ createApp({
             grupoSeleccionado,
             showDeleteModal,
             productosAsignados,
-            mostrarModalAsignar,
+            showModalAsignar,
             busquedaProducto,
+            openDeleteModal,
             cargarProductosGrupo,
             asignarProducto,
             removerProducto,

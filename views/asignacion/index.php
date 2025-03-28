@@ -37,7 +37,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">Productos en este grupo</h2>
                     <button
-                        @click="mostrarModalAsignar = true"
+                        @click="showModalAsignar = true"
                         class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md flex items-center">
                         <span class="mr-1">Asignar Producto</span>
                         <span class="text-xl">+</span>
@@ -85,11 +85,11 @@
             </div>
 
         </div>
-        <div v-if="mostrarModalAsignar" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div v-if="showModalAsignar" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white rounded-lg p-6 w-full max-w-3xl">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-semibold">Asignar Productos al Grupo</h3>
-                    <button @click="mostrarModalAsignar = false" class="text-gray-500 hover:text-gray-700">
+                    <button @click="showModalAsignar = false" class="text-gray-500 hover:text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -142,8 +142,8 @@
                                         <button
                                             @click="asignarProducto(producto.id)"
                                             :disabled="estaProductoAsignado(producto.id)"
+                                            class="px-3 py-1 rounded-md text-white text-sm"
                                             :class="[
-                        'px-3 py-1 rounded-md text-white text-sm',
                         estaProductoAsignado(producto.id) 
                           ? 'bg-gray-400 cursor-not-allowed' 
                           : 'bg-green-500 hover:bg-green-600'
@@ -159,7 +159,7 @@
 
                 <div class="flex justify-end">
                     <button
-                        @click="mostrarModalAsignar = false"
+                        @click="showModalAsignar = false"
                         class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-md">
                         Cerrar
                     </button>
@@ -178,7 +178,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-center mb-2">Confirmar Eliminación</h3>
                 <p class="text-gray-600 text-center mb-6">
-                    ¿Estás seguro de que deseas eliminar el grupo <span class="font-semibold">{{ 'currentGroup.nombre' }}</span>?
+                    ¿Estás seguro de que deseas remover el producto del grupo <span class="font-semibold">{{ 'currentGroup.nombre' }}</span>?
                     Esta acción no se puede deshacer.
                 </p>
                 <div class="flex justify-center space-x-3">

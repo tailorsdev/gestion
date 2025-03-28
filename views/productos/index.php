@@ -211,7 +211,7 @@
             </div>
         </div>
     </div>
-    <script src="ajax.js"></script>
+    <script src="js/ajax.js" type="module"></script>
 </body>
 
 </html>

@@ -170,7 +170,7 @@
         </div>
     </div>
 
-    <script src="ajaxGrupos.js"></script>
+    <script src="js/ajaxGrupos.js"></script>
 
 </body>
 

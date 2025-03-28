@@ -32,18 +32,9 @@ createApp({
         const cargarProductosGrupo = async () => {
             if (!grupoSeleccionado.value) return;
 
-            // const idsProductosAsignados = productosGrupos.value
-            //     .filter(pg => pg.grupoId === grupoSeleccionado.value)
-            //     .map(pg => pg.productoId);
-            const data = await fetch('index.php?controller=Asignacion&action=obtenerProductosAsignados', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ grupo_id: grupoSeleccionado.value })
-            })
+            const url = 'index.php?controller=Asignacion&action=obtenerProductosAsignados&'
+            const data = await fetch(url + 'grupoId=' + grupoSeleccionado.value)
             productosAsignados.value = await data.json()
-            //productos.value.filter(p => idsProductosAsignados.includes(p.id));
         };
 
         const asignarProducto = (productoId) => {

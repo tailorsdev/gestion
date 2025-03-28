@@ -10,13 +10,7 @@ createApp({
 
         const grupos = ref([]);
         const productos = ref([]);
-
-        const productosGrupos = ref([
-            { grupoId: 1, productoId: 1 },
-            { grupoId: 1, productoId: 3 },
-            { grupoId: 2, productoId: 2 }
-        ]);
-
+        const productosGrupos = ref([]);
         const grupoSeleccionado = ref('');
         const productosAsignados = ref([]);
         const mostrarModalAsignar = ref(false);
@@ -35,14 +29,21 @@ createApp({
             productos.value = await data.json()
         }
 
-        const cargarProductosGrupo = () => {
+        const cargarProductosGrupo = async () => {
             if (!grupoSeleccionado.value) return;
 
-            const idsProductosAsignados = productosGrupos.value
-                .filter(pg => pg.grupoId === grupoSeleccionado.value)
-                .map(pg => pg.productoId);
-
-            productosAsignados.value = productos.value.filter(p => idsProductosAsignados.includes(p.id));
+            // const idsProductosAsignados = productosGrupos.value
+            //     .filter(pg => pg.grupoId === grupoSeleccionado.value)
+            //     .map(pg => pg.productoId);
+            const data = await fetch('index.php?controller=Asignacion&action=obtenerProductosAsignados', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ grupoId: grupoSeleccionado.value })
+            })
+            productosAsignados.value = await data.json()
+            //productos.value.filter(p => idsProductosAsignados.includes(p.id));
         };
 
         const asignarProducto = (productoId) => {
@@ -93,7 +94,6 @@ createApp({
 
         onMounted(async () => {
             await loadDatasGrupos();
-            await loadDataProductos();
             if (grupos.value.length > 0) {
                 grupoSeleccionado.value = grupos.value[0].id;
                 cargarProductosGrupo();

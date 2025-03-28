@@ -50,7 +50,6 @@ createApp({
             })
 
             console.log(await data.json())
-
             cargarProductosGrupo();
         };
 
@@ -68,7 +67,7 @@ createApp({
 
         const estaProductoAsignado = (productoId) => {
             return productosGrupos.value.some(
-                pg => pg.grupoId === grupoSeleccionado.value && pg.productoId === productoId
+                pg => pg.grupo_id === grupoSeleccionado.value && pg.producto_id === productoId
             );
         };
 

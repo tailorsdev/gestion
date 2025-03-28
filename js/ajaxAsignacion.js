@@ -15,6 +15,7 @@ createApp({
         const productosAsignados = ref([]);
         const mostrarModalAsignar = ref(false);
         const busquedaProducto = ref('');
+        const showDeleteModal = ref(false)
 
 
         const loadDataGrupos = async () => {
@@ -53,16 +54,18 @@ createApp({
             cargarProductosGrupo();
         };
 
-        const removerProducto = (productoId) => {
-            const indice = productosGrupos.value.findIndex(
-                pg => pg.grupoId === grupoSeleccionado.value && pg.productoId === productoId
-            );
+        const removerProducto = async (productoId) => {
+            const formData = new FormData()
+            formData.append('grupo_id', grupoSeleccionado.value)
+            formData.append('producto_id', productoId)
+            const url = 'index.php?controller=Asignacion&action=remover'
+            const data = await fetch(url, {
+                method: 'POST',
+                body: formData
+            })
 
-            if (indice !== -1) {
-                productosGrupos.value.splice(indice, 1);
-
-                cargarProductosGrupo();
-            }
+            console.log(await data.json())
+            cargarProductosGrupo();
         };
 
         const estaProductoAsignado = (productoId) => {
@@ -102,6 +105,7 @@ createApp({
             productos,
             productosGrupos,
             grupoSeleccionado,
+            showDeleteModal,
             productosAsignados,
             mostrarModalAsignar,
             busquedaProducto,

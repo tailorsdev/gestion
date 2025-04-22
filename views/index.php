@@ -20,7 +20,7 @@
             <div class="grid w-full grid-cols-3 gap-4">
                 <div class="flex items-center justify-center">
                     <a href="?view=productos" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Productos
+                        Productos - Prueba
                     </a>
                 </div>
                 <div class="flex items-center justify-center">
